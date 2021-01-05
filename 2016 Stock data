@@ -1,0 +1,75 @@
+Sub Stock_data()
+
+        'Setting name title for each column
+       '-----------------------------------------
+        Dim Tricker As String
+        Dim Yearly_Change As String
+        Dim Percent_Change As String
+        Dim Total_Stock_Volume As String
+                
+        Cells(1, 9).Value = "Ticker"
+        Cells(1, 10).Value = " Yearly Change"
+        Range("K1").Value = "Percent Change"
+        Range("L1").Value = "Total Stock Volume"
+        
+        
+        
+        
+        'Setting Ticker  Coumn I = A
+        'i and j are both long variable, so have to use long instead of integer
+        '-----------------------------------------
+        Dim i As Long
+        Dim j As Long
+        Dim k As Long
+        Dim l As Long
+        
+        For i = 2 To 797711
+        
+           Cells(i, 9).Value = Cells(i, 1).Value
+        
+        Next i
+
+        'Yearly change from opening price at the
+        'beginning of a given year to the closing price at the end of that year.
+        'have conditional formatting that will highlight positive change
+        'in green and negative change in red.
+        '-----------------------------------------------------------
+        For j = 2 To 797711
+        
+            Cells(j, 10) = Cells(j, 6) - Cells(j, 3)
+        
+            If Cells(j, 10).Value < 0 Then
+            
+                Cells(j, 10).Interior.ColorIndex = 3
+                
+            Else
+                Cells(j, 10).Interior.ColorIndex = 4
+            
+            End If
+            
+        Next j
+    
+        'percent change from opening price at the beginning of a given year
+        'to the closing price at the end of that year.
+        '------------------------------------------------------
+        For k = 2 To 797711
+        
+        Cells(k, 11) = (Cells(k, 5) - Cells(k, 3)) / 100
+        
+        Next k
+        
+        'The total stock volume of the stock.
+        '-----------------------------------------------------
+        For l = 2 To 797711
+        
+        Cells(l, 12) = (1 + Cells(l, 11)) * Cells(l, 7)
+        
+        Next l
+        
+     
+           
+End Sub
+
+
+
+
